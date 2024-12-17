@@ -18,9 +18,11 @@ public class GoodsReceipt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String receiptCode;
     private Timestamp time;
     private Double unit_price;
     private Double totalPrice;
+    private String note;
     private Boolean isDisabled;
 
     @ManyToOne
