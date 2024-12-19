@@ -10,7 +10,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
                 <!-- Title -->
-                <title>Add Book</title>
+                <title>Book detail</title>
 
                 <!-- Favicon -->
                 <link rel="shortcut icon" href="\favicon.ico">
@@ -42,63 +42,17 @@
                         color: red !important;
                     }
                 </style>
-                <!-- <style>
-                /* Đảm bảo rằng select2 có cùng chiều rộng với các trường input khác */
-                .js-select2 {
-                    width: 100%;
-                    /* Đảm bảo trường dropdown có chiều rộng 100% */
-                }
 
-                /* Điều chỉnh margin và padding để đồng bộ */
-                .form-group select.form-control,
-                .form-group input.form-control {
-                    padding: 0.375rem 0.75rem;
-                    /* Đảm bảo padding giống nhau */
-                    font-size: 1rem;
-                    /* Giữ kích thước chữ đồng nhất */
-                    height: auto;
-                    /* Đảm bảo chiều cao không bị thay đổi */
-                }
-
-                /* Điều chỉnh kích thước select2 cho phù hợp với các input */
-                .select2-container .select2-selection--single {
-                    height: 38px;
-                    /* Đảm bảo chiều cao giống với các trường input */
-                    line-height: 36px;
-                    /* Căn chỉnh chữ bên trong select */
-                }
-
-                .select2-container .select2-selection--single .select2-selection__rendered {
-                    padding: 8px;
-                    /* Căn chỉnh lại padding bên trong select2 */
-                }
-
-                /* Đảm bảo border và background của select2 giống các input */
-                .select2-container .select2-selection--single {
-                    border: 1px solid #ced4da;
-                    /* Tạo viền giống input */
-                    background-color: #fff;
-                    /* Màu nền giống input */
-                }
-            </style> -->
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
                 <script>
                     $(document).ready(() => {
                         const avatarFile = $("#avatarFile");
+                        const avatarPreview = $("#avatarPreview");
 
                         avatarFile.change(function (e) {
-                            const file = e.target.files[0];
-
-                            if (file) {
-                                // Nếu có file được chọn, hiển thị ảnh preview
-                                const imgURL = URL.createObjectURL(file);
-                                $("#avatarPreview").attr("src", imgURL);
-                                $("#avatarPreview").css({ "display": "block" });
-                            } else {
-                                // Nếu không có file, ẩn ảnh preview
-                                $("#avatarPreview").css({ "display": "none" });
-                            }
-
+                            const imgURL = URL.createObjectURL(e.target.files[0]);
+                            $("#avatarPreview").attr("src", imgURL);
+                            $("#avatarPreview").css({ "display": "block" });
 
                         });
                     });
@@ -128,12 +82,12 @@
                                             <li class="breadcrumb-item"><a class="breadcrumb-link"
                                                     href="/admin/book">Cập
                                                     nhật sách</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Thêm mới sách
+                                            <li class="breadcrumb-item active" aria-current="page">Chi tiết sách
                                             </li>
                                         </ol>
                                     </nav>
 
-                                    <h1 class="page-header-title">Thêm mới sách</h1>
+                                    <h1 class="page-header-title">Chi tiết sách</h1>
                                 </div>
                             </div>
                             <!-- End Row -->
@@ -147,7 +101,7 @@
                                 <div class="card mb-3 mb-lg-5">
                                     <!-- Body -->
                                     <div class="card-body">
-                                        <form:form method="post" action="/admin/book/create" modelAttribute="newBook"
+                                        <form:form method="post" action="/admin/book/detail" modelAttribute="newBook"
                                             enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <c:set var="errName">
@@ -237,6 +191,11 @@
                                                     <div class="form-group">
                                                         <label for="avatarFile" class="input-label">Hình
                                                             ảnh</label>
+                                                        <!-- Hiển thị ảnh hiện tại nếu có -->
+                                                        <c:if test="${not empty newBook.image}">
+                                                            <img src="/images/book/${newBook.image}" alt="Current Image"
+                                                                style="max-width: 200px;" />
+                                                        </c:if>
                                                         <input class="form-control" type="file" name="imageBookFile"
                                                             id="avatarFile" accept=".png, .jpg, .jpeg" />
                                                     </div>
@@ -247,29 +206,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Hiển thị thông báo dạng alert -->
 
-                                            <!-- <c:if test="${not empty alertMessage}"> -->
-                                            <!-- <div class="alert alert-${alertType}">
-                                                    ${alertMessage}
-                                                </div> -->
-                                            <!-- <script>
-                                                    window.onload = function () {
-                                                        var message = "${alertMessage}";
-                                                        var alertType = "${alertType}";
-                                                        if (message) {
-                                                            // Hiển thị thông báo alert
-                                                            alert(message);
-
-                                                            // Nếu là thông báo thành công, chuyển hướng sau khi nhấn OK
-                                                            if (alertType == 'success') {
-                                                                // Chuyển hướng đến danh sách sách sau khi nhấn OK
-                                                                window.location.href = "/admin/book";
-                                                            }
-                                                        }
-                                                    };
-                                                </script> -->
-                                            <!-- </c:if> -->
                                             <div class="d-flex justify-content-end">
                                                 <button type="submit" class="btn btn-primary"
                                                     style="padding-left: 30px; padding-right: 30px;">Lưu</button>
@@ -336,58 +273,7 @@
                 <script>
                     if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="/assets/vendor/babel-polyfill/polyfill.min.js"><\/script>');
                 </script>
-                <!-- <script>
-                    $(document).ready(function () {
-                        // Áp dụng Select2 cho thẻ <select> có class 'form-control'
-                        $('.form-control').select2({
-                            dropdownAutoWidth: true,
-                            width: '100%',  // Đảm bảo dropdown chiếm toàn bộ chiều rộng
-                            maximumSelectionLength: 10  // Giới hạn số lựa chọn tối đa (nếu cần)
-                        });
-                    });
-                </script> -->
-                <!-- <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        // Lấy tất cả các trường input có class 'form-control'
-                        const formFields = document.querySelectorAll('.form-control');
 
-                        formFields.forEach(function (field) {
-                            field.addEventListener('input', function () {
-                                const errorElement = field.nextElementSibling; // lấy phần tử lỗi (form:errors)
-
-                                // Nếu trường hợp hợp lệ, xóa lớp is-invalid và ẩn lỗi
-                                if (field.value.trim() !== '') {
-                                    field.classList.remove('is-invalid');
-                                    if (errorElement && errorElement.classList.contains('invalid-feedback')) {
-                                        errorElement.style.display = 'none'; // Ẩn thông báo lỗi
-                                    }
-                                } else {
-                                    field.classList.add('is-invalid');
-                                    if (errorElement && errorElement.classList.contains('invalid-feedback')) {
-                                        errorElement.style.display = 'block'; // Hiển thị thông báo lỗi
-                                    }
-                                }
-                            });
-
-                            field.addEventListener('blur', function () {
-                                const errorElement = field.nextElementSibling;
-
-                                if (field.value.trim() !== '') {
-                                    field.classList.remove('is-invalid');
-                                    if (errorElement && errorElement.classList.contains('invalid-feedback')) {
-                                        errorElement.style.display = 'none';
-                                    }
-                                } else {
-                                    field.classList.add('is-invalid');
-                                    if (errorElement && errorElement.classList.contains('invalid-feedback')) {
-                                        errorElement.style.display = 'block';
-                                    }
-                                }
-                            });
-                        });
-                    });
-
-                </script> -->
 
             </body>
 

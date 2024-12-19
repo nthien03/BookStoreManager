@@ -2,6 +2,7 @@ package com.example.BookStoreManager.service;
 
 import java.util.List;
 
+import org.eclipse.tags.shaded.org.apache.regexp.recompile;
 import org.springframework.stereotype.Service;
 
 import com.example.BookStoreManager.domain.Book;
@@ -32,5 +33,9 @@ public class BookService {
 
     public List<Book> getAll() {
         return this.bookRepository.findAll();
+    }
+
+    public Book getById(long id) {
+        return this.bookRepository.findById(id);
     }
 }

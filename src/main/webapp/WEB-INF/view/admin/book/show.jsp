@@ -73,10 +73,11 @@
                                     <c:forEach var="book" items="${books}">
                                         <tr>
                                             <td>
-                                                <a class="media align-items-center" href="user-profile.html">
+                                                <a class="media align-items-center" href="/admin/book/${book.id}">
 
                                                     <img class="avatar avatar-lg mr-3" src="/images/book/${book.image}"
-                                                        alt="Image Description">
+                                                        alt="Image Description" onerror="this.src='/assets/img/400x400/img2.jpg'
+                                                        ;">
 
                                                     <div class="media-body">
                                                         <h5 class="text-hover-primary mb-0">${book.name}
@@ -104,8 +105,7 @@
                                             </td>
                                             <td>
                                                 <div class="btn-group" role="group">
-                                                    <a class="btn btn-sm btn-white"
-                                                        href="ecommerce-product-details.html">
+                                                    <a class="btn btn-sm btn-white" href="/admin/book/${book.id}">
                                                         <i class="tio-edit"></i> Sửa
                                                     </a>
 

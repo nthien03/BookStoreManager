@@ -7,5 +7,5 @@ import com.example.BookStoreManager.domain.Book;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
-
+    Book findById(long id);
 }

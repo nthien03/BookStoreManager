@@ -1,5 +1,6 @@
 package com.example.BookStoreManager.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.Flow.Publisher;
 
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,9 +42,6 @@ public class BookController {
     @GetMapping("/admin/book")
     public String displayBookPage(Model model) {
         List<Book> books = this.bookService.getAll();
-        for (Book book : books) {
-            System.out.println(book.toString());
-        }
 
         model.addAttribute("books", books);
 
@@ -71,15 +70,30 @@ public class BookController {
         if (newBookBindingResult.hasErrors()) {
             List<Author> authors = authorService.getAll();
             List<Category> categories = categoryService.getAll();
+
             model.addAttribute("authors", authors);
             model.addAttribute("categories", categories);
             return "admin/book/create";
         }
+
         String image = this.uploadService.handleSaveUploadFile(file, "book");
         book.setImage(image);
         book.setIsDisabled(false);
         this.bookService.createBook(book);
         return "redirect:/admin/book";
+    }
+
+    @GetMapping("/admin/book/{bookId}")
+    public String displayBookDetailPage(Model model, @PathVariable long bookId) {
+        List<Author> authors = authorService.getAll();
+        List<Category> categories = categoryService.getAll();
+        Book book = this.bookService.getById(bookId);
+        // Đưa dữ liệu vào model để hiển thị trên JSP
+        model.addAttribute("authors", authors);
+        model.addAttribute("categories", categories);
+        model.addAttribute("newBook", book);
+
+        return "admin/book/detail";
     }
 
 }
