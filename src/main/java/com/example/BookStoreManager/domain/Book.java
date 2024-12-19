@@ -2,8 +2,6 @@ package com.example.BookStoreManager.domain;
 
 import java.util.List;
 
-import org.springframework.format.annotation.NumberFormat;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +11,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -141,6 +138,14 @@ public class Book {
 
     public void setBookCopies(List<BookCopy> bookCopies) {
         this.bookCopies = bookCopies;
+    }
+
+    @Override
+    public String toString() {
+        return "Book [id=" + id + ", name=" + name + ", salePrice=" + salePrice + ", quantity=" + quantity + ", image="
+                + image + ", description=" + description + ", publisher=" + publisher + ", isDisabled=" + isDisabled
+                + ", author=" + author + ", category=" + category + ", bookCopies=" + bookCopies
+                + "]";
     }
 
 }

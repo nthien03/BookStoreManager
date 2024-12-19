@@ -39,8 +39,12 @@ public class BookController {
 
     @GetMapping("/admin/book")
     public String displayBookPage(Model model) {
+        List<Book> books = this.bookService.getAll();
+        for (Book book : books) {
+            System.out.println(book.toString());
+        }
 
-        model.addAttribute("newBook", new Book());
+        model.addAttribute("books", books);
 
         return "admin/book/show";
     }

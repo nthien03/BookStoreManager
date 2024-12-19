@@ -57,8 +57,7 @@
 
                         <!-- Table -->
                         <div class="table-responsive datatable-custom">
-                            <table
-                                class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle">
+                            <table class="table table-lg table-thead-bordered table-nowrap table-align-middle">
                                 <thead class="thead-light">
                                     <tr>
                                         <th>Tên sách</th>
@@ -66,6 +65,7 @@
                                         <th>Thể loại</th>
                                         <th>Số lượng</th>
                                         <th>Trạng thái</th>
+                                        <th>Hành động</th>
                                     </tr>
                                 </thead>
 
@@ -74,40 +74,66 @@
                                         <tr>
                                             <td>
                                                 <a class="media align-items-center" href="user-profile.html">
-                                                    <div class="avatar avatar-circle mr-3">
-                                                        <img class="avatar avatar-lg mr-3" src=""
-                                                            alt="Image Description">
-                                                    </div>
+
+                                                    <img class="avatar avatar-lg mr-3" src="/images/book/${book.image}"
+                                                        alt="Image Description">
+
                                                     <div class="media-body">
-                                                        <span class="d-block h5 text-hover-primary mb-0">Amanda Harvey
-                                                            <i class="tio-verified text-primary" data-toggle="tooltip"
-                                                                data-placement="top" title="Top endorsed"></i></span>
-                                                        <span
-                                                            class="d-block font-size-sm text-body">amanda@example.com</span>
+                                                        <h5 class="text-hover-primary mb-0">${book.name}
+                                                        </h5>
                                                     </div>
                                                 </a>
                                             </td>
                                             <td>
-                                                <span class="d-block h5 mb-0">Director</span>
-                                                <span class="d-block font-size-sm">Human resources</span>
+                                                ${book.author.name}
                                             </td>
-                                            <td>United Kingdom <span class="text-hide">Code: GB</span></td>
+                                            <td>${book.category.name}</td>
                                             <td>
-                                                <span class="legend-indicator bg-success"></span>Active
+                                                ${book.quantity}
                                             </td>
-                                            <td class="text-center">
-                                                <div class="custom-control custom-checkbox-bookmark">
-                                                    <input type="checkbox" id="favoriteCheckbox1"
-                                                        class="custom-control-input custom-checkbox-bookmark-input">
-                                                    <label class="custom-checkbox-bookmark-label"
-                                                        for="favoriteCheckbox1">
-                                                        <span class="custom-checkbox-bookmark-default">
-                                                            <i class="tio-star-outlined"></i>
-                                                        </span>
-                                                        <span class="custom-checkbox-bookmark-active">
-                                                            <i class="tio-star"></i>
-                                                        </span>
-                                                    </label>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${book.isDisabled=='0'}">
+                                                        <span class="legend-indicator bg-success"></span>Đang kinh doanh
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <span class="legend-indicator bg-danger"></span> Ngừng kinh
+                                                        doanh
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a class="btn btn-sm btn-white"
+                                                        href="ecommerce-product-details.html">
+                                                        <i class="tio-edit"></i> Sửa
+                                                    </a>
+
+                                                    <!-- <div class="hs-unfold btn-group">
+                                                        <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-white dropdown-toggle dropdown-toggle-empty"
+                                                            href="javascript:;" data-hs-unfold-options='{
+                                                                             "target": "#productsEditDropdown1",
+                                                                             "type": "css-animation",
+                                                                             "smartPositionOffEl": "#datatable"
+                                                                           }'></a>
+
+                                                        <div id="productsEditDropdown1"
+                                                            class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1">
+                                                            <a class="dropdown-item" href="#">
+                                                                <i class="tio-delete-outlined dropdown-item-icon"></i>
+                                                                Delete
+                                                            </a>
+                                                            <a class="dropdown-item" href="#">
+                                                                <i class="tio-archive dropdown-item-icon"></i> Archive
+                                                            </a>
+                                                            <a class="dropdown-item" href="#">
+                                                                <i class="tio-publish dropdown-item-icon"></i> Publish
+                                                            </a>
+                                                            <a class="dropdown-item" href="#">
+                                                                <i class="tio-clear dropdown-item-icon"></i> Unpublish
+                                                            </a>
+                                                        </div>
+                                                    </div> -->
                                                 </div>
                                             </td>
                                         </tr>
@@ -124,7 +150,7 @@
                 <!-- End Content -->
 
                 <!-- Footer -->
-                <jsp:include page="../layout/footer.jsp" />
+                <!-- <jsp:include page="../layout/footer.jsp" /> -->
                 <!-- End Footer -->
             </main>
 

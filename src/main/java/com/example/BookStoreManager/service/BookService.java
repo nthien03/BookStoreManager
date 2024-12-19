@@ -1,5 +1,7 @@
 package com.example.BookStoreManager.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.BookStoreManager.domain.Book;
@@ -26,5 +28,9 @@ public class BookService {
         }
 
         return bookRepository.save(book);
+    }
+
+    public List<Book> getAll() {
+        return this.bookRepository.findAll();
     }
 }
