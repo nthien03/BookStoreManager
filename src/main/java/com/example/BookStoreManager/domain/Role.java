@@ -21,4 +21,45 @@ public class Role {
 
     @OneToMany(mappedBy = "role")
     private List<Account> accounts;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Boolean getIsDisabled() {
+        return isDisabled;
+    }
+
+    public void setIsDisabled(Boolean isDisabled) {
+        this.isDisabled = isDisabled;
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+
 }

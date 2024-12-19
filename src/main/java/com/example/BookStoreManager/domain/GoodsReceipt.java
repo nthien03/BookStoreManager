@@ -35,4 +35,85 @@ public class GoodsReceipt {
 
     @OneToMany(mappedBy = "goodsReceipt")
     private List<GoodsReceiptDetail> goodsReceiptDetails;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getReceiptCode() {
+        return receiptCode;
+    }
+
+    public void setReceiptCode(String receiptCode) {
+        this.receiptCode = receiptCode;
+    }
+
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+
+    public Double getUnit_price() {
+        return unit_price;
+    }
+
+    public void setUnit_price(Double unit_price) {
+        this.unit_price = unit_price;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public Boolean getIsDisabled() {
+        return isDisabled;
+    }
+
+    public void setIsDisabled(Boolean isDisabled) {
+        this.isDisabled = isDisabled;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
+    public List<GoodsReceiptDetail> getGoodsReceiptDetails() {
+        return goodsReceiptDetails;
+    }
+
+    public void setGoodsReceiptDetails(List<GoodsReceiptDetail> goodsReceiptDetails) {
+        this.goodsReceiptDetails = goodsReceiptDetails;
+    }
+
 }

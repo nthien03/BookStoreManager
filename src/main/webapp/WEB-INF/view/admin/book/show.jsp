@@ -40,22 +40,87 @@
             <main id="content" role="main" class="main">
                 <!-- Content -->
                 <div class="content container-fluid">
-                    <!-- Page Header -->
                     <div class="page-header">
                         <div class="row align-items-center mb-3">
-                            <a class="btn btn-primary" href="/admin/book/create">Thêm mới sách</a>
+                            <div class="col-sm mb-2 mb-sm-0">
+                                <h1 class="page-header-title">Danh sách Sách</h1>
+                            </div>
+
+                            <div class="col-sm-auto">
+                                <a class="btn btn-primary" href="/admin/book/create">Thêm mới sách</a>
+                            </div>
                         </div>
-                        <!-- End Row -->
-
-                        <!-- Nav Scroller -->
-
-                        <!-- End Nav Scroller -->
                     </div>
-                    <!-- End Page Header -->
-                    <!-- Hiển thị thông báo nếu có -->
+                    <!-- Card -->
+                    <div class="card">
 
 
+                        <!-- Table -->
+                        <div class="table-responsive datatable-custom">
+                            <table
+                                class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Tên sách</th>
+                                        <th>Tác giả</th>
+                                        <th>Thể loại</th>
+                                        <th>Số lượng</th>
+                                        <th>Trạng thái</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <c:forEach var="book" items="${books}">
+                                        <tr>
+                                            <td>
+                                                <a class="media align-items-center" href="user-profile.html">
+                                                    <div class="avatar avatar-circle mr-3">
+                                                        <img class="avatar avatar-lg mr-3" src=""
+                                                            alt="Image Description">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <span class="d-block h5 text-hover-primary mb-0">Amanda Harvey
+                                                            <i class="tio-verified text-primary" data-toggle="tooltip"
+                                                                data-placement="top" title="Top endorsed"></i></span>
+                                                        <span
+                                                            class="d-block font-size-sm text-body">amanda@example.com</span>
+                                                    </div>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <span class="d-block h5 mb-0">Director</span>
+                                                <span class="d-block font-size-sm">Human resources</span>
+                                            </td>
+                                            <td>United Kingdom <span class="text-hide">Code: GB</span></td>
+                                            <td>
+                                                <span class="legend-indicator bg-success"></span>Active
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="custom-control custom-checkbox-bookmark">
+                                                    <input type="checkbox" id="favoriteCheckbox1"
+                                                        class="custom-control-input custom-checkbox-bookmark-input">
+                                                    <label class="custom-checkbox-bookmark-label"
+                                                        for="favoriteCheckbox1">
+                                                        <span class="custom-checkbox-bookmark-default">
+                                                            <i class="tio-star-outlined"></i>
+                                                        </span>
+                                                        <span class="custom-checkbox-bookmark-active">
+                                                            <i class="tio-star"></i>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- End Table -->
+                    </div>
+                    <!-- End Card -->
                 </div>
+
                 <!-- End Content -->
 
                 <!-- Footer -->

@@ -239,11 +239,11 @@
 
                                             <!-- Hiển thị thông báo dạng alert -->
 
-                                            <c:if test="${not empty alertMessage}">
-                                                <!-- <div class="alert alert-${alertType}">
+                                            <!-- <c:if test="${not empty alertMessage}"> -->
+                                            <!-- <div class="alert alert-${alertType}">
                                                     ${alertMessage}
                                                 </div> -->
-                                                <script>
+                                            <!-- <script>
                                                     window.onload = function () {
                                                         var message = "${alertMessage}";
                                                         var alertType = "${alertType}";
@@ -258,8 +258,8 @@
                                                             }
                                                         }
                                                     };
-                                                </script>
-                                            </c:if>
+                                                </script> -->
+                                            <!-- </c:if> -->
                                             <div class="d-flex justify-content-end">
                                                 <button type="submit" class="btn btn-primary"
                                                     style="padding-left: 30px; padding-right: 30px;">Lưu</button>

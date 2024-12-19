@@ -30,4 +30,69 @@ public class BookCopy {
     @ManyToOne
     @JoinColumn(name = "goods_receipt_detail_id")
     private GoodsReceiptDetail goodsReceiptDetail;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(int serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Boolean getIsDisabled() {
+        return isDisabled;
+    }
+
+    public void setIsDisabled(Boolean isDisabled) {
+        this.isDisabled = isDisabled;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public OrderDetail getOrderDetail() {
+        return orderDetail;
+    }
+
+    public void setOrderDetail(OrderDetail orderDetail) {
+        this.orderDetail = orderDetail;
+    }
+
+    public GoodsReceiptDetail getGoodsReceiptDetail() {
+        return goodsReceiptDetail;
+    }
+
+    public void setGoodsReceiptDetail(GoodsReceiptDetail goodsReceiptDetail) {
+        this.goodsReceiptDetail = goodsReceiptDetail;
+    }
+
 }
