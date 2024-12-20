@@ -96,4 +96,26 @@ public class BookController {
         return "admin/book/detail";
     }
 
+    @PostMapping("/admin/book/update")
+    public String handleUpdateBook(Model model, @ModelAttribute("newBook") @Valid Book book,
+            BindingResult newBookBindingResult, @RequestParam("imageBookFile") MultipartFile file) {
+        // validate
+        if (newBookBindingResult.hasErrors()) {
+            List<Author> authors = authorService.getAll();
+            List<Category> categories = categoryService.getAll();
+
+            model.addAttribute("authors", authors);
+            model.addAttribute("categories", categories);
+            return "admin/book/detail";
+        }
+        String image = this.uploadService.handleSaveUploadFile(file, "book");
+        if (!image.isEmpty()) {
+            book.setImage(image);
+        }
+
+        this.bookService.updateBook(book.getId(), book);
+
+        return "redirect:/admin/book";
+    }
+
 }

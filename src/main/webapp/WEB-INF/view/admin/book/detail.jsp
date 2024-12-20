@@ -109,8 +109,12 @@
                                 <div class="card mb-3 mb-lg-5">
                                     <!-- Body -->
                                     <div class="card-body">
-                                        <form:form method="post" action="/admin/book/detail" modelAttribute="newBook"
+                                        <form:form method="post" action="/admin/book/update" modelAttribute="newBook"
                                             enctype="multipart/form-data">
+                                            <div class="form-group" style="display: none;">
+                                                <label class="input-label">ID: </label>
+                                                <form:input type="text" class="form-control" path="id" />
+                                            </div>
                                             <div class="form-group">
                                                 <c:set var="errName">
                                                     <form:errors path="name" cssClass="invalid-feedback" />
@@ -131,7 +135,6 @@
                                                         <label class="input-label required">Tác giả</label>
                                                         <form:select path="author"
                                                             class="form-control ${not empty errAuthor ? 'is-invalid':''}">
-                                                            <form:option value="" label="--Chọn tác giả" />
                                                             <form:options items="${authors}" itemValue="id"
                                                                 itemLabel="name" />
                                                         </form:select>
@@ -147,7 +150,6 @@
                                                         <form:select
                                                             class="form-control ${not empty errCategory ? 'is-invalid':''}"
                                                             path="category">
-                                                            <form:option value="" label="--Chọn thể loại" />
                                                             <form:options items="${categories}" itemValue="id"
                                                                 itemLabel="name" />
                                                         </form:select>
@@ -184,7 +186,30 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <c:set var="errQuantity">
+                                                            <form:errors path="quantity" />
+                                                        </c:set>
+                                                        <label class="input-label required">Số lượng</label>
+                                                        <form:input type="number" path="quantity"
+                                                            class="form-control ${not empty errQuantity ? 'is-invalid':''}"
+                                                            placeholder="Nhập số lượng (VD: 10)" />
+                                                        <form:errors path="quantity" class="text-danger" />
 
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="input-label required">Trạng thái</label>
+                                                        <form:select class="form-control" path="isDisabled">
+                                                            <form:option value="0" label="Đang kinh doanh" />
+                                                            <form:option value="1" label="Ngừng kinh doanh" />
+                                                        </form:select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
@@ -204,11 +229,19 @@
                                                             id="avatarFile" accept=".png, .jpg, .jpeg" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <c:if test="${not empty newBook.image}">
-                                                            <img src="/images/book/${newBook.image}"
-                                                                style="max-height: 250px;" alt="avatar preview"
-                                                                id="avatarPreview" />
-                                                        </c:if>
+                                                        <c:choose>
+                                                            <c:when test="${not empty newBook.image}">
+                                                                <img src="/images/book/${newBook.image}"
+                                                                    style="max-height: 250px;" alt="avatar preview"
+                                                                    id="avatarPreview" />
+                                                                <form:input type="text" class="form-control"
+                                                                    path="image" style="display: none;" />
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <img style="max-height: 250px; display: none;"
+                                                                    alt="No avatar available" id="avatarPreview" />
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                     </div>
                                                 </div>
                                             </div>

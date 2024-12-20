@@ -28,7 +28,7 @@ public class BookService {
             book.setDescription(book.getDescription().trim());
         }
 
-        return bookRepository.save(book);
+        return this.bookRepository.save(book);
     }
 
     public List<Book> getAll() {
@@ -37,5 +37,24 @@ public class BookService {
 
     public Book getById(long id) {
         return this.bookRepository.findById(id);
+    }
+
+    public Book updateBook(long id, Book book) {
+        Book bookInDb = this.bookRepository.findById(id);
+        if (bookInDb == null) {
+            return null;
+        }
+
+        bookInDb.setName(book.getName().trim());
+        bookInDb.setPublisher(book.getPublisher().trim());
+        bookInDb.setQuantity(book.getQuantity());
+        bookInDb.setSalePrice(book.getSalePrice());
+        bookInDb.setDescription(book.getDescription().trim());
+        bookInDb.setImage(book.getImage());
+        bookInDb.setAuthor(book.getAuthor());
+        bookInDb.setCategory(book.getCategory());
+        bookInDb.setIsDisabled(book.getIsDisabled());
+
+        return this.bookRepository.save(bookInDb);
     }
 }
