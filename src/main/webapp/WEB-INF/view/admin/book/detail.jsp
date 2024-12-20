@@ -47,12 +47,20 @@
                 <script>
                     $(document).ready(() => {
                         const avatarFile = $("#avatarFile");
-                        const avatarPreview = $("#avatarPreview");
 
                         avatarFile.change(function (e) {
-                            const imgURL = URL.createObjectURL(e.target.files[0]);
-                            $("#avatarPreview").attr("src", imgURL);
-                            $("#avatarPreview").css({ "display": "block" });
+                            const file = e.target.files[0];
+
+                            if (file) {
+                                // Nếu có file được chọn, hiển thị ảnh preview
+                                const imgURL = URL.createObjectURL(file);
+                                $("#avatarPreview").attr("src", imgURL);
+                                $("#avatarPreview").css({ "display": "block" });
+                            } else {
+                                // Nếu không có file, ẩn ảnh preview
+                                $("#avatarPreview").css({ "display": "none" });
+                            }
+
 
                         });
                     });
@@ -192,16 +200,15 @@
                                                         <label for="avatarFile" class="input-label">Hình
                                                             ảnh</label>
                                                         <!-- Hiển thị ảnh hiện tại nếu có -->
-                                                        <c:if test="${not empty newBook.image}">
-                                                            <img src="/images/book/${newBook.image}" alt="Current Image"
-                                                                style="max-width: 200px;" />
-                                                        </c:if>
                                                         <input class="form-control" type="file" name="imageBookFile"
                                                             id="avatarFile" accept=".png, .jpg, .jpeg" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <img style="max-height: 250px; display: none;"
-                                                            alt="avatar preview" id="avatarPreview" />
+                                                        <c:if test="${not empty newBook.image}">
+                                                            <img src="/images/book/${newBook.image}"
+                                                                style="max-height: 250px;" alt="avatar preview"
+                                                                id="avatarPreview" />
+                                                        </c:if>
                                                     </div>
                                                 </div>
                                             </div>
