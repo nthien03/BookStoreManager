@@ -1,8 +1,6 @@
 package com.example.BookStoreManager.controller;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.Flow.Publisher;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -96,7 +94,7 @@ public class BookController {
         return "admin/book/detail";
     }
 
-    @PostMapping("/admin/book/update")
+    @PostMapping("/admin/book/update/{bookId}")
     public String handleUpdateBook(Model model, @ModelAttribute("newBook") @Valid Book book,
             BindingResult newBookBindingResult, @RequestParam("imageBookFile") MultipartFile file) {
         // validate

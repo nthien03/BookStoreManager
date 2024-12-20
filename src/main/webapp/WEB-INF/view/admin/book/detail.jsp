@@ -109,8 +109,8 @@
                                 <div class="card mb-3 mb-lg-5">
                                     <!-- Body -->
                                     <div class="card-body">
-                                        <form:form method="post" action="/admin/book/update" modelAttribute="newBook"
-                                            enctype="multipart/form-data">
+                                        <form:form method="post" action="/admin/book/update/${newBook.id}"
+                                            modelAttribute="newBook" enctype="multipart/form-data">
                                             <div class="form-group" style="display: none;">
                                                 <label class="input-label">ID: </label>
                                                 <form:input type="text" class="form-control" path="id" />
