@@ -59,17 +59,17 @@
                             <!-- Apps -->
                             <li class="navbar-vertical-aside-has-menu ">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle "
-                                    href="javascript:;" title="Apps">
+                                    href="/admin/order" title="Apps">
                                     <i class="tio-shopping-basket-outlined tio-xl nav-icon"></i>
                                     <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Quản
                                         lý bán hàng
                                 </a>
 
-                                <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                                <!-- <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
                                     <li class="nav-item">
                                         <a class="nav-link " href="/admin" title="Kanban">
                                             <span class="tio-circle nav-indicator-icon"></span>
-                                            <span class="text-truncate">Đơn hàng</span>
+                                            <span class="text-truncate">Quản lý đơn hàng</span>
                                         </a>
                                     </li>
 
@@ -80,7 +80,7 @@
                                             <span class="text-truncate">Báo cáo doanh thu</span>
                                         </a>
                                     </li>
-                                </ul>
+                                </ul> -->
                             </li>
                             <!-- End Apps -->
 
