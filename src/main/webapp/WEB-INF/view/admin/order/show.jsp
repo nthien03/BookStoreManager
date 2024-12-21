@@ -84,6 +84,8 @@
                                             <td>
                                                 <form action="/admin/order/update/${order.id}" method="post"
                                                     class="media align-items-center">
+                                                    <input type="hidden" name="${_csrf.parameterName}"
+                                                        value="${_csrf.token}" />
                                                     <input type="hidden" name="id" value="${order.id}" />
                                                     <select class="custom-select custom-select-borderless"
                                                         name="orderType">

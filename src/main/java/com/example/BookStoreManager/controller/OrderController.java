@@ -7,8 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.BookStoreManager.domain.Book;
 import com.example.BookStoreManager.domain.Order;
 import com.example.BookStoreManager.service.AccountService;
 import com.example.BookStoreManager.service.OrderService;
@@ -55,6 +56,15 @@ public class OrderController {
         model.addAttribute("order", order);
 
         return "admin/order/detail";
+    }
+
+    @PostMapping("/admin/order/update/{orderId}")
+    public String handleUpdateOrderStatus(@PathVariable long orderId,
+            @RequestParam("orderType") String orderType,
+            @RequestParam("status") String status) {
+
+        this.orderService.handleUpdateStatus(orderId, status, orderType);
+        return "redirect:/admin/order";
     }
 
 }

@@ -53,4 +53,14 @@ public class OrderService {
     public Order getById(long id) {
         return this.orderRepository.findById(id);
     }
+
+    public Order handleUpdateStatus(long id, String status, String orderType) {
+        Order order = this.orderRepository.findById(id);
+        if (order == null) {
+            return null;
+        }
+        order.setStatus(status);
+        order.setOrderType(orderType);
+        return this.orderRepository.save(order);
+    }
 }
