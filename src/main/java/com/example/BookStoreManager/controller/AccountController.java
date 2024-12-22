@@ -36,4 +36,9 @@ public class AccountController {
         // this.accountService.saveAccount(account);
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "admin/auth/login";
+    }
+
 }
