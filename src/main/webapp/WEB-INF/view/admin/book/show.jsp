@@ -23,6 +23,22 @@
 
             <!-- CSS Front Template -->
             <link rel="stylesheet" href="..\assets\css\theme.min.css?v=1.0">
+            <style>
+                .frame-3by4-lg {
+                    height: 3.36875rem;
+                    aspect-ratio: 3 / 4;
+                    overflow: hidden;
+                }
+
+                .frame-3by4 img {
+                    width: 100%;
+                    /* Fit theo khung */
+                    height: 100%;
+                    /* Fit theo khung */
+                    object-fit: cover;
+                    /* Đảm bảo không méo ảnh */
+                }
+            </style>
         </head>
 
         <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl">
@@ -75,7 +91,7 @@
                                             <td>
                                                 <a class="media align-items-center" href="/admin/book/${book.id}">
 
-                                                    <img class="avatar avatar-lg mr-3" src="/images/book/${book.image}"
+                                                    <img class="frame-3by4-lg mr-3" src="/images/book/${book.image}"
                                                         alt="Image Description" onerror="this.src='/assets/img/400x400/img2.jpg'
                                                         ;">
 

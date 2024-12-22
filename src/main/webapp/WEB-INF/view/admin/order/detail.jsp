@@ -23,6 +23,22 @@
 
             <!-- CSS Front Template -->
             <link rel="stylesheet" href="\assets\css\theme.min.css?v=1.0">
+            <style>
+                .frame-3by4-xl {
+                    height: 4.92188rem;
+                    aspect-ratio: 3 / 4;
+                    overflow: hidden;
+                }
+
+                .frame-3by4 img {
+                    width: 100%;
+                    /* Fit theo khung */
+                    height: 100%;
+                    /* Fit theo khung */
+                    object-fit: cover;
+                    /* Đảm bảo không méo ảnh */
+                }
+            </style>
         </head>
 
         <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl">
@@ -123,8 +139,8 @@
                                     <!-- Media -->
                                     <c:forEach var="orderDetail" items="${order.orderDetails}">
                                         <div class="media">
-                                            <div class="avatar avatar-xl mr-3">
-                                                <img class="img-fluid" src="/images/book/${orderDetail.book.image}"
+                                            <div class="mr-3">
+                                                <img class="frame-3by4-xl" src="/images/book/${orderDetail.book.image}"
                                                     alt="Image Description">
                                             </div>
 
