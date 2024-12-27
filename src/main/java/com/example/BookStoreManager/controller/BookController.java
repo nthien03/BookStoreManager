@@ -1,7 +1,11 @@
 package com.example.BookStoreManager.controller;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +22,7 @@ import com.example.BookStoreManager.domain.Category;
 import com.example.BookStoreManager.service.AuthorService;
 import com.example.BookStoreManager.service.BookService;
 import com.example.BookStoreManager.service.CategoryService;
+import com.example.BookStoreManager.service.PaginationService;
 import com.example.BookStoreManager.service.UploadService;
 
 import jakarta.validation.Valid;
@@ -28,21 +33,38 @@ public class BookController {
     private final CategoryService categoryService;
     private final BookService bookService;
     private final UploadService uploadService;
+    private final PaginationService paginationService;
 
     public BookController(AuthorService authorService, CategoryService categoryService, BookService bookService,
-            UploadService uploadService) {
+            UploadService uploadService, PaginationService paginationService) {
         this.authorService = authorService;
         this.categoryService = categoryService;
         this.bookService = bookService;
         this.uploadService = uploadService;
+        this.paginationService = paginationService;
     }
 
     @GetMapping("/admin/book")
-    public String displayBookPage(Model model) {
-        List<Book> books = this.bookService.getAll();
+    public String displayBookPage(Model model,
+            @RequestParam("page") Optional<String> pageIn) {
 
-        model.addAttribute("books", books);
+        // int page = 1;
+        // try {
+        // if (pageIn.isPresent()) {
+        // page = Integer.parseInt(pageIn.get());
+        // }
+        // } catch (Exception e) {
+        // // TODO: handle exception
+        // }
+        int page = this.paginationService.getPage(pageIn);
+        Pageable pageable = PageRequest.of(page - 1, 10);
+        Page<Book> books = this.bookService.getAll(pageable);
 
+        List<Book> lBooks = books.getContent();
+
+        model.addAttribute("books", lBooks);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", books.getTotalPages());
         return "admin/book/show";
     }
 

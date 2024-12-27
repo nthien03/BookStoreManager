@@ -149,6 +149,7 @@
                                     <div class="card-body">
                                         <form:form method="post" action="/admin/book/create" modelAttribute="newBook"
                                             enctype="multipart/form-data">
+                                            <!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> -->
                                             <div class="form-group">
                                                 <c:set var="errName">
                                                     <form:errors path="name" cssClass="invalid-feedback" />

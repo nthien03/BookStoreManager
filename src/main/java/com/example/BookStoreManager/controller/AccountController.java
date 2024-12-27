@@ -16,8 +16,8 @@ public class AccountController {
     private final AccountService accountService;
     private final RoleService roleService;
 
-    public AccountController(AccountService accountService, RoleService roleService) {
-        this.passwordEncoder = new BCryptPasswordEncoder();
+    public AccountController(PasswordEncoder passwordEncoder, AccountService accountService, RoleService roleService) {
+        this.passwordEncoder = passwordEncoder;
         this.accountService = accountService;
         this.roleService = roleService;
     }

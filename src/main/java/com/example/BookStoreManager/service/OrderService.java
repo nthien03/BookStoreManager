@@ -5,6 +5,8 @@ import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Random;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.BookStoreManager.domain.Order;
@@ -46,8 +48,8 @@ public class OrderService {
         return sb.toString();
     }
 
-    public List<Order> getAll() {
-        return this.orderRepository.findAll();
+    public Page<Order> getAll(Pageable pageable) {
+        return this.orderRepository.findAll(pageable);
     }
 
     public Order getById(long id) {

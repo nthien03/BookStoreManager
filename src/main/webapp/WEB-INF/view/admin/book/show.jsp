@@ -158,6 +158,30 @@
                                 </tbody>
                             </table>
                         </div>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+
+                                <li class="page-item ${currentPage eq 1 ? 'disabled' : ''}">
+                                    <a class="page-link" href="/admin/book?page=${currentPage-1}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+
+                                <c:forEach begin="1" end="${totalPages}" varStatus="loop">
+                                    <li class="page-item ${loop.index eq currentPage ? 'active' : ''}">
+                                        <a class="page-link" href="/admin/book?page=${loop.index}">
+                                            ${loop.index}
+                                        </a>
+                                    </li>
+                                </c:forEach>
+
+                                <li class="page-item ${currentPage eq totalPages ? 'disabled' : ''}">
+                                    <a class="page-link" href="/admin/book?page=${currentPage+1}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
                         <!-- End Table -->
                     </div>
                     <!-- End Card -->

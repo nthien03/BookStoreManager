@@ -1,8 +1,7 @@
 package com.example.BookStoreManager.service;
 
-import java.util.List;
-
-import org.eclipse.tags.shaded.org.apache.regexp.recompile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.BookStoreManager.domain.Book;
@@ -17,7 +16,7 @@ public class BookService {
     }
 
     public Book createBook(Book book) {
-        // Trim các trường trước khi lưu
+
         if (book.getName() != null) {
             book.setName(book.getName().trim());
         }
@@ -28,11 +27,15 @@ public class BookService {
             book.setDescription(book.getDescription().trim());
         }
 
+        if (this.bookRepository.existsByNameAndAuthorAndPublisher(book.getName(), book.getAuthor(),
+                book.getPublisher())) {
+            throw new IllegalArgumentException("Sách có tên, tác giả và nhà xuất bản như này đã tồn tại.");
+        }
         return this.bookRepository.save(book);
     }
 
-    public List<Book> getAll() {
-        return this.bookRepository.findAll();
+    public Page<Book> getAll(Pageable pageable) {
+        return this.bookRepository.findAll(pageable);
     }
 
     public Book getById(long id) {
